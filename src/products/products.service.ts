@@ -27,7 +27,10 @@ export class ProductsService {
   }
 
   findOne(id: number) {
-    return this.products.find(product => product.id === id);
+    const product = this.products.find(product => product.id === id);
+    if (!product) throw new Error('Product not found');
+    return product;
+
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {
